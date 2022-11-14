@@ -1,4 +1,6 @@
 import { nanoid } from 'nanoid';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/actions';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
@@ -15,14 +17,21 @@ let schema = yup.object().shape({
 });
 
 export default function PhonebookForm({ onSubmit }) {
+  const dispatch = useDispatch();
+
   const handleSubmit = (values, { resetForm }) => {
-    onSubmit({
-      id: nanoid(),
-      name: values.name,
-      number: values.number,
-    });
-    resetForm();
+    console.log(values);
+    dispatch(addContact(values));
   };
+
+  // const handleSubmit = (values, { resetForm }) => {
+  //   onSubmit({
+  //     id: nanoid(),
+  //     name: values.name,
+  //     number: values.number,
+  //   });
+  //   resetForm();
+  // };
 
   return (
     <Formik

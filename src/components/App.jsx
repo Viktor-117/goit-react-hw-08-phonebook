@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import Notiflix from 'notiflix';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import PhonebookForm from './PhonebookForm';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
@@ -50,7 +51,7 @@ export function App() {
 
   const formSubmitHandler = data => {
     contactsNameCheck(data.name)
-      ? Notiflix.Notify.failure(`${data.name} is already in contacts.`)
+      ? toast.error(`${data.name} is already in contacts.`)
       : setContacts(prevState => [...prevState, data]);
   };
 
@@ -82,6 +83,11 @@ export function App() {
           onDelete={deleteContact}
         ></ContactList>
       )}
+      <ToastContainer
+        autoClose={3000}
+        theme="colored"
+        style={{ fontSize: '18px' }}
+      />
     </Container>
   );
 }
