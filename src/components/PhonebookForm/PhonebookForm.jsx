@@ -1,4 +1,6 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from 'redux/slectors';
+import { toast } from 'react-toastify';
 import { addContact } from 'redux/actions';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -17,21 +19,23 @@ let schema = yup.object().shape({
 
 export default function PhonebookForm() {
   const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+  console.log(contacts);
 
-  const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
-    dispatch(addContact(values));
-    resetForm();
+  const contactsNameCheck = name => {
+    const normalizedName = name.toLowerCase();
+    return contacts.find(contact =>
+      contact.name.toLowerCase().includes(normalizedName)
+    );
   };
 
-  // const handleSubmit = (values, { resetForm }) => {
-  //   onSubmit({
-  //     id: nanoid(),
-  //     name: values.name,
-  //     number: values.number,
-  //   });
-  //   resetForm();
-  // };
+  const handleSubmit = (values, { resetForm }) => {
+    contactsNameCheck(values.name)
+      ? toast.error(`${values.name} is already in contacts!`)
+      : dispatch(addContact(values));
+
+    resetForm();
+  };
 
   return (
     <Formik

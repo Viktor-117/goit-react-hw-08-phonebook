@@ -30,9 +30,9 @@ export function App() {
   //   localStorage.setItem('contacts', JSON.stringify(contacts));
   // }, [contacts]);
 
-  const handleChange = event => {
-    setFilter(event.currentTarget.value);
-  };
+  // const handleChange = event => {
+  //   setFilter(event.currentTarget.value);
+  // };
 
   // const getVisibleContacts = () => {
   //   const normalizedFilter = filter.toLowerCase();
@@ -76,7 +76,7 @@ export function App() {
       <PhonebookForm></PhonebookForm>
 
       <Title>Contacts</Title>
-      <Filter filter={filter} onChange={handleChange}></Filter>
+      <Filter></Filter>
       {/* {contacts.length > 0 && ( */}
       <ContactList
       // contacts={getVisibleContacts()}
