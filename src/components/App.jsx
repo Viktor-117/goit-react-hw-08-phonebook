@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import { getContacts } from 'redux/slectors';
+import { refreshContacts } from 'redux/actions';
 import 'react-toastify/dist/ReactToastify.css';
 import PhonebookForm from './PhonebookForm';
 import ContactList from 'components/ContactList';
@@ -15,20 +18,23 @@ export function App() {
   //   { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
   //   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   // ]);
-  const [filter, setFilter] = useState('');
+  // const [filter, setFilter] = useState('');
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
 
-  // useEffect(() => {
-  //   const localStorageContacts = JSON.parse(localStorage.getItem('contacts'));
+  useEffect(() => {
+    const localStorageContacts = JSON.parse(localStorage.getItem('contacts'));
 
-  //   if (initialRender.current && localStorageContacts) {
-  //     setContacts(localStorageContacts);
-  //     initialRender.current = false;
-  //   }
-  // }, []);
+    console.log(localStorageContacts);
+    if (initialRender.current && localStorageContacts) {
+      dispatch(refreshContacts(localStorageContacts));
+      initialRender.current = false;
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts]);
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   // const handleChange = event => {
   //   setFilter(event.currentTarget.value);

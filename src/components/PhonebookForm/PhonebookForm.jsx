@@ -20,7 +20,6 @@ let schema = yup.object().shape({
 export default function PhonebookForm() {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
-  console.log(contacts);
 
   const contactsNameCheck = name => {
     const normalizedName = name.toLowerCase();

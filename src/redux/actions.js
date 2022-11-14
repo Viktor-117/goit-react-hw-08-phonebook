@@ -7,6 +7,10 @@ export const addContact = ({ name, number }) => {
   };
 };
 
+export const refreshContacts = contacts => {
+  return { type: 'contacts/refreshContacts', payload: contacts };
+};
+
 export const deleteContact = contactId => {
   return { type: 'contacts/deleteContact', payload: contactId };
 };

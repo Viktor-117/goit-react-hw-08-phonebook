@@ -9,6 +9,8 @@ const contactsInitialState = [
 
 const contactsReducer = (state = contactsInitialState, action) => {
   switch (action.type) {
+    case 'refreshContacts':
+      return [action.payload];
     case 'contacts/addContact':
       return [...state, action.payload];
     case 'contacts/deleteContact':
