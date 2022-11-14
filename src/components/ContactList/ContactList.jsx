@@ -16,14 +16,11 @@ export default function ContactList() {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
   // console.log(filter);
-  // const visibleContacts = getVisibleContacts(
-  //   useSelector(getContacts),
-  //   useSelector(getFilter)
-  // );
+  const visibleContacts = getVisibleContacts(contacts, filter);
 
   return (
     <List>
-      {contacts.map(contact => {
+      {visibleContacts.map(contact => {
         // console.log(contact);
         return <ListItem key={contact.id} contact={contact}></ListItem>;
       })}

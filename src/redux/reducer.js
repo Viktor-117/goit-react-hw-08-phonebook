@@ -13,8 +13,8 @@ const contactsReducer = (state = contactsInitialState, action) => {
       return [...state, action.payload];
     case 'contacts/deleteContact':
       return state.filter(contact => contact.id !== action.payload);
-    // case 'contacts/filterContacts':
-    //   return state.filter(contact => contact.name.includes(action.payload));
+    case 'contacts/filterContacts':
+      return state.filter(contact => contact.name.includes(action.payload));
     default:
       return state;
   }
@@ -24,8 +24,9 @@ const filterInitialState = '';
 
 const filterReducer = (state = filterInitialState, action) => {
   switch (action.type) {
-    case 'filter/filterContacts':
-      return state.filter(contact => contact.name.includes(action.payload));
+    case 'filter/filterContacts': {
+      return (state = action.payload);
+    }
     default:
       return state;
   }

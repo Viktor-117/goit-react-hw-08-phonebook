@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
 export const ListItemText = styled.li`
-  /* display: flex;
-  align-items: center; */
-
   font-size: 25px;
   margin-top: 8px;
 `;
