@@ -23,7 +23,7 @@ export default function PhonebookForm() {
 
   const contactsNameCheck = name => {
     const normalizedName = name.toLowerCase();
-    return contacts.find(contact =>
+    return contacts.list.find(contact =>
       contact.name.toLowerCase().includes(normalizedName)
     );
   };

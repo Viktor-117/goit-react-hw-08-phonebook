@@ -4,8 +4,6 @@ import { List } from './ContactList.styled';
 import ListItem from 'components/ListItem';
 
 const getVisibleContacts = (contacts, filter) => {
-  // console.log(contacts.typeOf);
-
   return contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
@@ -13,10 +11,8 @@ const getVisibleContacts = (contacts, filter) => {
 
 export default function ContactList() {
   const contacts = useSelector(getContacts);
-  // console.log(contacts);
   const filter = useSelector(getFilter);
-  // console.log(filter);
-  const visibleContacts = getVisibleContacts(contacts, filter);
+  const visibleContacts = getVisibleContacts(contacts.list, filter);
 
   return (
     <List>
