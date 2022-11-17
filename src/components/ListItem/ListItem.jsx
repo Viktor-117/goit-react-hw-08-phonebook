@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contactsSlice';
+// import { deleteContact } from 'redux/contactsSlice';
 import { MdClose } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import { ListItemText, Button, Text } from './ListItem.styled';
@@ -7,18 +7,18 @@ import { ListItemText, Button, Text } from './ListItem.styled';
 export default function ListItem({ contact }) {
   const dispatch = useDispatch();
 
-  const { id, name, number } = contact;
+  const { id, name, phone } = contact;
 
-  const handleDelete = () => dispatch(deleteContact(id));
+  // const handleDelete = () => dispatch(deleteContact(id));
 
   return (
     <ListItemText>
       <Text>
-        {name}: {number}
+        {name}: {phone}
       </Text>
-      <Button type="button" onClick={handleDelete}>
-        <MdClose size={24} />
-      </Button>
+      {/* <Button type="button" onClick={handleDelete}> */}
+      {/* <MdClose size={24} /> */}
+      {/* </Button> */}
     </ListItemText>
   );
 }
@@ -27,6 +27,6 @@ ListItem.propTypes = {
   contact: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
   }).isRequired,
 };

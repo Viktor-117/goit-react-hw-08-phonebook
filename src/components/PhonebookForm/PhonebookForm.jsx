@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'redux/slectors';
 import { toast } from 'react-toastify';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
@@ -23,7 +23,7 @@ export default function PhonebookForm() {
 
   const contactsNameCheck = name => {
     const normalizedName = name.toLowerCase();
-    return contacts.items.find(contact =>
+    return contacts.find(contact =>
       contact.name.toLowerCase().includes(normalizedName)
     );
   };
@@ -38,7 +38,7 @@ export default function PhonebookForm() {
 
   return (
     <Formik
-      initialValues={{ name: '', number: '' }}
+      initialValues={{ name: '', phone: '' }}
       onSubmit={handleSubmit}
       validationSchema={schema}
     >
@@ -58,12 +58,12 @@ export default function PhonebookForm() {
           Number
           <NameInput
             type="tel"
-            name="number"
+            name="phone"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
-          <Error name="number" component="div" />
+          <Error name="phone" component="div" />
         </LabelName>
         <Button type="submit">Add contact</Button>
       </FormContainer>
