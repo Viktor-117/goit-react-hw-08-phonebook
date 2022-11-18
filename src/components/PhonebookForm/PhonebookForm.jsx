@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/slectors';
+import { selectContacts } from 'redux/slectors';
 import { toast } from 'react-toastify';
 import { addContact } from 'redux/operations';
 import { Formik } from 'formik';
@@ -19,7 +19,7 @@ let schema = yup.object().shape({
 
 export default function PhonebookForm() {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const contactsNameCheck = name => {
     console.log(name);
