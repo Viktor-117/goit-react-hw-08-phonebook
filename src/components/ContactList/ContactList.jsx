@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RotatingLines } from 'react-loader-spinner';
+import { toast } from 'react-toastify';
 import { fetchContacts } from 'redux/operations';
 import { getIsLoading, getContacts, getError, getFilter } from 'redux/slectors';
 import { List } from './ContactList.styled';
@@ -27,8 +28,7 @@ export default function ContactList() {
 
   return (
     <div>
-      {isLoading && <RotatingLines strokeColor="#4fa94d"></RotatingLines>}
-      {error && <p>Ooops, something went wrong. Please, try again</p>}
+      {error && toast.error('Ooops, something went wrong. Please, try again')}
       {contacts.length > 0 && (
         <List>
           {visibleContacts.map(contact => {
@@ -36,6 +36,7 @@ export default function ContactList() {
           })}
         </List>
       )}
+      {isLoading && <RotatingLines strokeColor="#4fa94d"></RotatingLines>}
     </div>
   );
 }
