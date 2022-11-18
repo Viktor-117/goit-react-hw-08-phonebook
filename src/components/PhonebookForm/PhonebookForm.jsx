@@ -14,7 +14,7 @@ import {
 
 let schema = yup.object().shape({
   name: yup.string().required(),
-  number: yup.string().min(4).required(),
+  phone: yup.string().min(4).required(),
 });
 
 export default function PhonebookForm() {
@@ -22,6 +22,7 @@ export default function PhonebookForm() {
   const contacts = useSelector(getContacts);
 
   const contactsNameCheck = name => {
+    console.log(name);
     const normalizedName = name.toLowerCase();
     return contacts.find(contact =>
       contact.name.toLowerCase().includes(normalizedName)
@@ -29,6 +30,7 @@ export default function PhonebookForm() {
   };
 
   const handleSubmit = (values, { resetForm }) => {
+    console.log(values);
     contactsNameCheck(values.name)
       ? toast.error(`${values.name} is already in contacts!`)
       : dispatch(addContact(values));

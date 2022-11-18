@@ -28,7 +28,7 @@ export default function ContactList() {
   return (
     <div>
       {isLoading && <RotatingLines strokeColor="#4fa94d"></RotatingLines>}
-      {error && <p>{error}</p>}
+      {error && <p>Ooops, something went wrong. Please, try again</p>}
       {contacts.length > 0 && (
         <List>
           {visibleContacts.map(contact => {
