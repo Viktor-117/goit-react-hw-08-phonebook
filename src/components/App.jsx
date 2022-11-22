@@ -8,11 +8,11 @@ import PhonebookForm from './PhonebookForm';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
 // import RegisterView from 'pages/RegisterView';
-import { Container, Title } from './App.styled';
 
 const HomeView = lazy(() => import('pages/HomeView'));
 const RegisterView = lazy(() => import('pages/RegisterView'));
 const LoginView = lazy(() => import('pages/LoginView'));
+const ContactsView = lazy(() => import('pages/ContactsView'));
 
 export function App() {
   return (
@@ -23,6 +23,7 @@ export function App() {
         </Route>
         <Route path={'register'} element={<RegisterView />}></Route>
         <Route path={'login'} element={<LoginView />}></Route>
+        <Route path={'contacts'} element={<ContactsView />}></Route>
       </Route>
     </Routes>
   );
