@@ -1,4 +1,4 @@
-import { List, ListItem, LogOutBtn, Welcome } from './AppBar.styled';
+import { List, ListItem, LogOutBtn, Welcome } from './UserMenu.styled';
 import authSelectors from 'redux/auth/auth-selectors';
 
 export default function UserMenu() {

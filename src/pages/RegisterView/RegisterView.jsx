@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
+import { toast } from 'react-toastify';
+import useAuth from 'hooks';
 import {
   RegisterForm,
   InputName,
@@ -15,6 +17,7 @@ export default function RegisterView() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { error } = useAuth();
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -73,6 +76,7 @@ export default function RegisterView() {
 
         <RegisterButton type="submit">Register</RegisterButton>
       </RegisterForm>
+      {/* {error && toast.error(error)} */}
     </Box>
   );
 }

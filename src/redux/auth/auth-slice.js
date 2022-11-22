@@ -5,7 +5,8 @@ const initialState = {
   user: { name: null, email: null },
   isLoading: false,
   token: null,
-  isLoggedIn: false,
+  isLoggedIn: true,
+  error: null,
 };
 
 const handleRecected = (state, action) => {
@@ -42,4 +43,6 @@ const authSlice = createSlice({
   },
 });
 
-export default authSlice.reducer;
+const authReducer = authSlice.reducer;
+
+export default authReducer;

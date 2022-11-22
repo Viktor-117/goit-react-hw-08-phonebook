@@ -2,6 +2,8 @@ const getIsLoggedIn = state => state.auth.getIsLoggedIn;
 
 const getUser = state => state.auth.user;
 
-const authSelectors = { getIsLoggedIn, getUser };
+const getError = state => state.auth.error;
+
+const authSelectors = { getIsLoggedIn, getUser, getError };
 
 export default authSelectors;
