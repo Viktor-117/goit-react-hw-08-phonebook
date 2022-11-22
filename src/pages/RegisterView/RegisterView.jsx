@@ -6,6 +6,8 @@ import {
   InputName,
   StyledInput,
   RegisterButton,
+  Box,
+  Title,
 } from './RegisterView.styled';
 
 export default function RegisterView() {
@@ -36,8 +38,8 @@ export default function RegisterView() {
   };
 
   return (
-    <div>
-      <h1>Register Page</h1>
+    <Box>
+      <Title>Register Page</Title>
       <RegisterForm autoOcmplete="off" onSubmit={handleSubmit}>
         <InputName>
           Name
@@ -71,6 +73,6 @@ export default function RegisterView() {
 
         <RegisterButton type="submit">Register</RegisterButton>
       </RegisterForm>
-    </div>
+    </Box>
   );
 }

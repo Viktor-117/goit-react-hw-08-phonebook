@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import AppBar from 'components/AppBar';
 
 const Box = styled.div`
-  max-width: 1440px;
+  max-width: 100%;
 `;
 
 export default function Layout() {

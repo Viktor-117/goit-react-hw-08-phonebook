@@ -7,9 +7,11 @@ import PublicRoute from './PublicRoute';
 import PhonebookForm from './PhonebookForm';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
+// import RegisterView from 'pages/RegisterView';
 import { Container, Title } from './App.styled';
 
 const HomeView = lazy(() => import('pages/HomeView'));
+const RegisterView = lazy(() => import('pages/RegisterView'));
 
 export function App() {
   return (
@@ -18,6 +20,7 @@ export function App() {
         <Route index element={<HomeView />}>
           {/* // {<PublicRoute component={<HomeView />} />}> */}
         </Route>
+        <Route path={'register'} element={<RegisterView />}></Route>
       </Route>
     </Routes>
   );

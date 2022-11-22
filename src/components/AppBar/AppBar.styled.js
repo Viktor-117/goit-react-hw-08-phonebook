@@ -31,5 +31,8 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   display: inline-block;
-  margin-left: 15px;
+
+  :last-of-type {
+    margin-left: 30px;
+  }
 `;
