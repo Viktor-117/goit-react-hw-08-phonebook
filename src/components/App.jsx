@@ -15,7 +15,9 @@ export function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<PublicRoute component={<HomeView />} />}></Route>
+        <Route index element={<HomeView />}>
+          {/* // {<PublicRoute component={<HomeView />} />}> */}
+        </Route>
       </Route>
     </Routes>
   );

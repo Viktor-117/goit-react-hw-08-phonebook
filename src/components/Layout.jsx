@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Suspense } from 'react';
 import styled from 'styled-components';
+import AppBar from 'components/AppBar';
 
 const Box = styled.div`
   max-width: 1440px;
@@ -10,6 +11,7 @@ const Box = styled.div`
 export default function Layout() {
   return (
     <Box>
+      <AppBar />
       <Suspense>
         <Outlet />
       </Suspense>
