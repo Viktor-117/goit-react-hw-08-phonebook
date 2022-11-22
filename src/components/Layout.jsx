@@ -1,0 +1,23 @@
+import { Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import { Suspense } from 'react';
+import styled from 'styled-components';
+
+const Box = styled.div`
+  max-width: 1440px;
+`;
+
+export default function Layout() {
+  return (
+    <Box>
+      <Suspense>
+        <Outlet />
+      </Suspense>
+      <ToastContainer
+        autoClose={3000}
+        theme="colored"
+        style={{ fontSize: '18px' }}
+      />
+    </Box>
+  );
+}
