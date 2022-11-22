@@ -2,24 +2,21 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import {
-  RegisterForm,
+  LoginForm,
   InputName,
   StyledInput,
-  RegisterButton,
+  LoginButton,
   Box,
   Title,
-} from './RegisterView.styled';
+} from './LoginView.styled';
 
-export default function RegisterView() {
+export default function LoginView() {
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
-      case 'name':
-        return setName(value);
       case 'email':
         return setEmail(value);
       case 'password':
@@ -31,26 +28,15 @@ export default function RegisterView() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(authOperations.register({ name, email, password }));
-    setName('');
+    dispatch(authOperations.login({ email, password }));
     setEmail('');
     setPassword('');
   };
 
   return (
     <Box>
-      <Title>Register</Title>
-      <RegisterForm autoOcmplete="off" onSubmit={handleSubmit}>
-        <InputName>
-          Name
-          <StyledInput
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-          />
-        </InputName>
-
+      <Title>Login</Title>
+      <LoginForm autoOcmplete="off" onSubmit={handleSubmit}>
         <InputName>
           E-mail
           <StyledInput
@@ -71,8 +57,8 @@ export default function RegisterView() {
           />
         </InputName>
 
-        <RegisterButton type="submit">Register</RegisterButton>
-      </RegisterForm>
+        <LoginButton type="submit">Login</LoginButton>
+      </LoginForm>
     </Box>
   );
 }

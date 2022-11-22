@@ -10,9 +10,16 @@ export const InputName = styled.label`
   margin-bottom: 15px;
 `;
 
-export const StyledInput = styled.input``;
+export const StyledInput = styled.input`
+  font-size: 16px;
+  padding: 4px;
+`;
 
-export const RegisterButton = styled.button``;
+export const RegisterButton = styled.button`
+  padding: 4px 8px;
+  margin-top: 32px;
+  cursor: pointer;
+`;
 
 export const Box = styled.div`
   margin-top: 40px;

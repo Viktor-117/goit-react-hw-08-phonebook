@@ -12,6 +12,7 @@ import { Container, Title } from './App.styled';
 
 const HomeView = lazy(() => import('pages/HomeView'));
 const RegisterView = lazy(() => import('pages/RegisterView'));
+const LoginView = lazy(() => import('pages/LoginView'));
 
 export function App() {
   return (
@@ -21,6 +22,7 @@ export function App() {
           {/* // {<PublicRoute component={<HomeView />} />}> */}
         </Route>
         <Route path={'register'} element={<RegisterView />}></Route>
+        <Route path={'login'} element={<LoginView />}></Route>
       </Route>
     </Routes>
   );
