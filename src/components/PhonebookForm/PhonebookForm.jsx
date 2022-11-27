@@ -14,7 +14,7 @@ import {
 
 let schema = yup.object().shape({
   name: yup.string().required(),
-  phone: yup.string().min(4).required(),
+  number: yup.string().min(4).required(),
 });
 
 export default function PhonebookForm() {
@@ -22,7 +22,7 @@ export default function PhonebookForm() {
   const contacts = useSelector(selectContacts);
 
   const contactsNameCheck = name => {
-    console.log(name);
+    // console.log(name);
     const normalizedName = name.toLowerCase();
     return contacts.find(contact =>
       contact.name.toLowerCase().includes(normalizedName)
@@ -40,7 +40,7 @@ export default function PhonebookForm() {
 
   return (
     <Formik
-      initialValues={{ name: '', phone: '' }}
+      initialValues={{ name: '', number: '' }}
       onSubmit={handleSubmit}
       validationSchema={schema}
     >
@@ -60,12 +60,12 @@ export default function PhonebookForm() {
           Number
           <NameInput
             type="tel"
-            name="phone"
+            name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
-          <Error name="phone" component="div" />
+          <Error name="number" component="div" />
         </LabelName>
         <Button type="submit">Add contact</Button>
       </FormContainer>
