@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { List, ListItem, LogOutBtn, Welcome } from './UserMenu.styled';
+import { List, ListItem, LogOutBtn, Welcome, Avatar } from './UserMenu.styled';
 import authSelectors from 'redux/auth/auth-selectors';
+import defaultAvatar from './default-avatar.png';
 import { authOperations } from 'redux/auth';
 
 export default function UserMenu() {
@@ -9,6 +10,7 @@ export default function UserMenu() {
   return (
     <List>
       <ListItem>
+        <Avatar src={defaultAvatar} alt="avatar" width="20"></Avatar>
         <Welcome>Welcome {user.name}</Welcome>
       </ListItem>
       <ListItem>
