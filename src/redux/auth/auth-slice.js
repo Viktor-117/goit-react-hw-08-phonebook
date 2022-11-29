@@ -69,7 +69,7 @@ const authSlice = createSlice({
     },
     [authOperations.fetchCurrentUser.rejected](state) {
       state.isRefreshingUser = false;
-      toast.error('Ooops, something went wrong. Please, Try again!');
+      // toast.error('Ooops, something went wrong. Please, Try again!');
     },
   },
 });
