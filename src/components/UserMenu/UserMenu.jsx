@@ -1,12 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { List, ListItem, LogOutBtn, Welcome, Avatar } from './UserMenu.styled';
-import authSelectors from 'redux/auth/auth-selectors';
+import { useAuth } from 'hooks';
 import defaultAvatar from './default-avatar.png';
 import { authOperations } from 'redux/auth';
 
 export default function UserMenu() {
   const dispatch = useDispatch();
-  const user = useSelector(authSelectors.getUser);
+  const { user } = useAuth();
+
   return (
     <List>
       <ListItem>

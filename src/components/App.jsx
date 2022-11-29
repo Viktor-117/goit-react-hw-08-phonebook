@@ -7,11 +7,18 @@ import { authOperations } from 'redux/auth';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import useAuth from 'hooks/useAuth';
+import styled from 'styled-components';
 
 const HomeView = lazy(() => import('pages/HomeView'));
 const RegisterView = lazy(() => import('pages/RegisterView'));
 const LoginView = lazy(() => import('pages/LoginView'));
 const ContactsView = lazy(() => import('pages/ContactsView'));
+
+const Box = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+`;
 
 export function App() {
   const dispatch = useDispatch();
@@ -22,7 +29,9 @@ export function App() {
   }, [dispatch]);
 
   return isRefreshingUser ? (
-    <RotatingLines strokeColor="#4fa94d" />
+    <Box>
+      <RotatingLines strokeColor="#4fa94d" />
+    </Box>
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>

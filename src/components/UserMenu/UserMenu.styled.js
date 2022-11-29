@@ -20,13 +20,6 @@ export const LogOutBtn = styled.button`
 
 export const Welcome = styled.p`
   font-weight: 700;
-  /* ::before {
-    content: '';
-    background: url('./default-avatar.png');
-    margin-right: 10px;
-    width: 15px;
-    display: block;
-  } */
 `;
 
 export const Avatar = styled.img`

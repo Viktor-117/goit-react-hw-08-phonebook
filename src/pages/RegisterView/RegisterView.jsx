@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import { toast } from 'react-toastify';
-import useAuth from 'hooks';
+import {useAuth} from 'hooks';
 import {
   RegisterForm,
   InputName,

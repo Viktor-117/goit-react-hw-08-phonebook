@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './auth-operations';
+import { toast } from 'react-toastify';
 
 const initialState = {
   user: { name: null, email: null },
@@ -10,7 +11,7 @@ const initialState = {
   isRefreshingUser: false,
 };
 
-const handleRecected = (state, action) => {
+const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
 };
@@ -31,7 +32,11 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     [authOperations.register.pending]: handlePending,
-    [authOperations.register.rejected]: handleRecected,
+    [authOperations.register.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+      toast.error('Ooops, something went wrong. Please, Try again!');
+    },
     [authOperations.login.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
@@ -40,7 +45,11 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     [authOperations.login.pending]: handlePending,
-    [authOperations.login.rejected]: handleRecected,
+    [authOperations.login.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+      toast.error('Email or password is wong. Please, Try again!');
+    },
     [authOperations.logout.fulfilled](state) {
       state.user = { name: null, email: null };
       state.isLoading = false;
@@ -49,7 +58,7 @@ const authSlice = createSlice({
       state.error = null;
     },
     [authOperations.logout.pending]: handlePending,
-    [authOperations.logout.rejected]: handleRecected,
+    [authOperations.logout.rejected]: handleRejected,
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
       state.user = action.payload;
       state.isLoggedIn = true;
@@ -60,6 +69,7 @@ const authSlice = createSlice({
     },
     [authOperations.fetchCurrentUser.rejected](state) {
       state.isRefreshingUser = false;
+      toast.error('Ooops, something went wrong. Please, Try again!');
     },
   },
 });

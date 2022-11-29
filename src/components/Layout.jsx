@@ -14,7 +14,19 @@ export default function Layout() {
   return (
     <Box>
       <AppBar />
-      <Suspense fallback={<RotatingLines strokeColor="#4fa94d" />}>
+      <Suspense
+        fallback={
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '30px',
+            }}
+          >
+            <RotatingLines strokeColor="#4fa94d" />
+          </div>
+        }
+      >
         <Outlet />
       </Suspense>
       <ToastContainer

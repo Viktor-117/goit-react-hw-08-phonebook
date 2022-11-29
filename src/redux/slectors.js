@@ -16,3 +16,13 @@ export const selectVisibleContacts = createSelector(
     );
   }
 );
+
+const contactSelectors = {
+  selectContacts,
+  selectIsLoading,
+  selectError,
+  selectFilter,
+  selectVisibleContacts,
+};
+
+export default contactSelectors;
