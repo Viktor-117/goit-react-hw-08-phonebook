@@ -55,10 +55,10 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.isRefreshingUser = false;
     },
-    [authOperations.login.pending](state) {
+    [authOperations.fetchCurrentUser.pending](state) {
       state.isRefreshingUser = true;
     },
-    [authOperations.login.rejected](state) {
+    [authOperations.fetchCurrentUser.rejected](state) {
       state.isRefreshingUser = false;
     },
   },

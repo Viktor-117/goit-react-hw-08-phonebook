@@ -4,7 +4,7 @@ const getUser = state => state.auth.user;
 
 const getError = state => state.auth.error;
 
-const getIsRefreshingUser = state => state.auth.getIsRefreshingUser;
+const getIsRefreshingUser = state => state.auth.isRefreshingUser;
 
 const authSelectors = { getIsLoggedIn, getUser, getError, getIsRefreshingUser };
 

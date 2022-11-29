@@ -3,6 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { RotatingLines } from 'react-loader-spinner';
 import Layout from './Layout';
 import { authOperations, authSelectors } from 'redux/auth';
 import PrivateRoute from './PrivateRoute';
@@ -25,38 +26,39 @@ export function App() {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
-  return (
-    !isRefreshingUser && (
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomeView />} />
-          <Route
-            path="/register"
-            element={
-              <PublicRoute
-                restricted
-                redirectTo="/contacts"
-                component={<RegisterView />}
-              />
-            }
-          ></Route>
-          <Route
-            path={'/login'}
-            element={
-              <PublicRoute
-                restricted
-                redirectTo="/contacts"
-                component={<LoginView />}
-              />
-            }
-          ></Route>
-          <Route
-            path={'/contacts'}
-            element={
-              <PrivateRoute redirectTo="/login" component={<ContactsView />} />
-            }
-          ></Route>
-          {/* <PublicRoute index>
+  return isRefreshingUser ? (
+    <RotatingLines strokeColor="#4fa94d" />
+  ) : (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomeView />} />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute
+              restricted
+              redirectTo="/contacts"
+              component={<RegisterView />}
+            />
+          }
+        ></Route>
+        <Route
+          path={'/login'}
+          element={
+            <PublicRoute
+              restricted
+              redirectTo="/contacts"
+              component={<LoginView />}
+            />
+          }
+        ></Route>
+        <Route
+          path={'/contacts'}
+          element={
+            <PrivateRoute redirectTo="/login" component={<ContactsView />} />
+          }
+        ></Route>
+        {/* <PublicRoute index>
           <HomeView />
         </PublicRoute>
 
@@ -71,9 +73,8 @@ export function App() {
         <PrivateRoute path={'contacts'}>
           <ContactsView />
         </PrivateRoute> */}
-        </Route>
-      </Routes>
-    )
+      </Route>
+    </Routes>
   );
 
   {

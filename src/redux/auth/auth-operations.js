@@ -8,12 +8,9 @@ const token = {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
-    console.log('Hi');
     axios.defaults.headers.common.Authorization = '';
   },
 };
-
-console.log((axios.defaults.headers.common.Authorization = `Bearer ${token}`));
 
 const register = createAsyncThunk(
   'auth/register',
