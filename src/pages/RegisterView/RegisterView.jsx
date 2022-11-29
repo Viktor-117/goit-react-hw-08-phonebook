@@ -76,7 +76,7 @@ export default function RegisterView() {
 
         <RegisterButton type="submit">Register</RegisterButton>
       </RegisterForm>
-      {/* {error && toast.error(error)} */}
+      {error && toast.error(error)}
     </Box>
   );
 }

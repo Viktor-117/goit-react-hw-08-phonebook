@@ -27,30 +27,15 @@ const authPersistConfig = {
   storage,
   whitelist: ['token'],
 };
-// const persistConfig = {
-//   key: 'contacts',
-//   storage,
-// };
-
-// const persistedContactsReducer = persistReducer(persistConfig, contactsReducer);
-// const persistedFilterReducer = persistReducer(persistConfig, filterReducer);
 
 export const store = configureStore({
   reducer: {
     contacts: contactsReducer,
     filter: filterReducer,
     auth: persistReducer(authPersistConfig, authReducer),
-    // auth: authReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
-  // middleware(getDefaultMiddleware) {
-  //   return getDefaultMiddleware({
-  //     serializableCheck: {
-  //       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-  //     },
-  //   });
-  // },
 });
 
 export const persistor = persistStore(store);
