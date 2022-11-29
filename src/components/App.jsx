@@ -1,13 +1,14 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, lazy } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { RotatingLines } from 'react-loader-spinner';
 import Layout from './Layout';
 import { authOperations, authSelectors } from 'redux/auth';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import useAuth from 'hooks/useAuth';
 import PhonebookForm from './PhonebookForm';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
@@ -20,7 +21,8 @@ const ContactsView = lazy(() => import('pages/ContactsView'));
 
 export function App() {
   const dispatch = useDispatch();
-  const isRefreshingUser = useSelector(authSelectors.getIsRefreshingUser);
+  const { isRefreshingUser } = useAuth();
+  // const isRefreshingUser = useSelector(authSelectors.getIsRefreshingUser);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -29,36 +31,37 @@ export function App() {
   return isRefreshingUser ? (
     <RotatingLines strokeColor="#4fa94d" />
   ) : (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomeView />} />
-        <Route
-          path="/register"
-          element={
-            <PublicRoute
-              restricted
-              redirectTo="/contacts"
-              component={<RegisterView />}
-            />
-          }
-        ></Route>
-        <Route
-          path={'/login'}
-          element={
-            <PublicRoute
-              restricted
-              redirectTo="/contacts"
-              component={<LoginView />}
-            />
-          }
-        ></Route>
-        <Route
-          path={'/contacts'}
-          element={
-            <PrivateRoute redirectTo="/login" component={<ContactsView />} />
-          }
-        ></Route>
-        {/* <PublicRoute index>
+    <Suspense fallback={<RotatingLines strokeColor="#4fa94d" />}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomeView />} />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute
+                restricted
+                redirectTo="/contacts"
+                component={<RegisterView />}
+              />
+            }
+          ></Route>
+          <Route
+            path={'/login'}
+            element={
+              <PublicRoute
+                restricted
+                redirectTo="/contacts"
+                component={<LoginView />}
+              />
+            }
+          ></Route>
+          <Route
+            path={'/contacts'}
+            element={
+              <PrivateRoute redirectTo="/login" component={<ContactsView />} />
+            }
+          ></Route>
+          {/* <PublicRoute index>
           <HomeView />
         </PublicRoute>
 
@@ -73,8 +76,9 @@ export function App() {
         <PrivateRoute path={'contacts'}>
           <ContactsView />
         </PrivateRoute> */}
-      </Route>
-    </Routes>
+        </Route>
+      </Routes>
+    </Suspense>
   );
 
   {

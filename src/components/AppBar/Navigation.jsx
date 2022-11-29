@@ -1,9 +1,11 @@
 import { Box, Link, List, ListItem } from './AppBar.styled';
-import { useSelector } from 'react-redux';
-import { authSelectors } from 'redux/auth';
+import useAuth from 'hooks/useAuth';
+// import { useSelector } from 'react-redux';
+// import { authSelectors } from 'redux/auth';
 
 export default function Navigation() {
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const { isLoggedIn } = useAuth();
+  // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     <Box>
       <List>

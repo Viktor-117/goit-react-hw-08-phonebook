@@ -4,7 +4,7 @@ import authSelectors from 'redux/auth/auth-selectors';
 export default function useAuth() {
   const user = useSelector(authSelectors.getUser);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  const error = useSelector(authSelectors.getError);
+  const isRefreshing = useSelector(authSelectors.getIsRefreshingUser);
 
-  return { user, isLoggedIn, error };
+  return { user, isLoggedIn, isRefreshing };
 }
