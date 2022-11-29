@@ -1,10 +1,19 @@
-import { Box, Link } from './AppBar.styled';
+import { Box, Link, List, ListItem } from './AppBar.styled';
+import { useSelector } from 'react-redux';
+import { authSelectors } from 'redux/auth';
 
 export default function Navigation() {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     <Box>
-      <Link to={'/'}>Home</Link>
-      <Link to={'contacts'}>Phonebook</Link>
+      <List>
+        <ListItem>
+          <Link to={'/'}>Home</Link>
+        </ListItem>
+        <ListItem>
+          {isLoggedIn && <Link to={'contacts'}>Phonebook</Link>}
+        </ListItem>
+      </List>
     </Box>
   );
 }

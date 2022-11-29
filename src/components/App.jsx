@@ -1,8 +1,11 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './Layout';
+import { authOperations, authSelectors } from 'redux/auth';
+import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import PhonebookForm from './PhonebookForm';
 import ContactList from 'components/ContactList';
@@ -15,19 +18,66 @@ const LoginView = lazy(() => import('pages/LoginView'));
 const ContactsView = lazy(() => import('pages/ContactsView'));
 
 export function App() {
+  const dispatch = useDispatch();
+  const isRefreshingUser = useSelector(authSelectors.getIsRefreshingUser);
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomeView />}>
-          {/* // {<PublicRoute component={<HomeView />} />}> */}
+    !isRefreshingUser && (
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomeView />} />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute
+                restricted
+                redirectTo="/contacts"
+                component={<RegisterView />}
+              />
+            }
+          ></Route>
+          <Route
+            path={'/login'}
+            element={
+              <PublicRoute
+                restricted
+                redirectTo="/contacts"
+                component={<LoginView />}
+              />
+            }
+          ></Route>
+          <Route
+            path={'/contacts'}
+            element={
+              <PrivateRoute redirectTo="/login" component={<ContactsView />} />
+            }
+          ></Route>
+          {/* <PublicRoute index>
+          <HomeView />
+        </PublicRoute>
+
+        <PublicRoute path={'/register'} restricted>
+          <RegisterView />
+        </PublicRoute>
+
+        <PublicRoute path={'/login'} restricted>
+          <LoginView />
+        </PublicRoute>
+
+        <PrivateRoute path={'contacts'}>
+          <ContactsView />
+        </PrivateRoute> */}
         </Route>
-        <Route path={'register'} element={<RegisterView />}></Route>
-        <Route path={'login'} element={<LoginView />}></Route>
-        <Route path={'contacts'} element={<ContactsView />}></Route>
-      </Route>
-    </Routes>
+      </Routes>
+    )
   );
-  // return (
+
+  {
+    /* // return (
   //   <Container>
   //     <Title>Phonebook</Title>
   //     <PhonebookForm></PhonebookForm>
@@ -41,5 +91,6 @@ export function App() {
   //       style={{ fontSize: '18px' }}
   //     />
   //   </Container>
-  // );
+  // ); */
+  }
 }

@@ -21,7 +21,7 @@ export const Link = styled(NavLink)`
   }
 `;
 
-export const Box = styled.div`
+export const Box = styled.nav`
   display: flex;
   justify-content: space-between;
 `;

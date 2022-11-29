@@ -7,7 +7,7 @@ export default function AuthNav() {
         <Link to={'register'}>Register</Link>
       </ListItem>
       <ListItem>
-        <Link to={'login'}>LogIn</Link>
+        <Link to={'login'}>Login</Link>
       </ListItem>
     </List>
   );
