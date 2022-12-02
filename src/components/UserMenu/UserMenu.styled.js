@@ -13,11 +13,6 @@ export const ListItem = styled.li`
   }
 `;
 
-export const LogOutBtn = styled.button`
-  height: 22px;
-  padding: 2px 8px;
-`;
-
 export const Welcome = styled.p`
   font-weight: 700;
 `;

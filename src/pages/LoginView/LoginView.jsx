@@ -1,14 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
-import {
-  LoginForm,
-  InputName,
-  StyledInput,
-  LoginButton,
-  Box,
-  Title,
-} from './LoginView.styled';
+import { Button } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import { Container, Title } from './LoginView.styled';
 
 export default function LoginView() {
   const dispatch = useDispatch();
@@ -27,6 +23,7 @@ export default function LoginView() {
   };
 
   const handleSubmit = e => {
+    console.log(e);
     e.preventDefault();
     dispatch(authOperations.login({ email, password }));
     setEmail('');
@@ -34,31 +31,53 @@ export default function LoginView() {
   };
 
   return (
-    <Box>
+    <Container>
       <Title>Login</Title>
-      <LoginForm autoOcmplete="off" onSubmit={handleSubmit}>
-        <InputName>
-          E-mail
-          <StyledInput
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </InputName>
-
-        <InputName>
-          Password
-          <StyledInput
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </InputName>
-
-        <LoginButton type="submit">Login</LoginButton>
-      </LoginForm>
-    </Box>
+      <Box
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        component="form"
+        sx={{
+          '& > :not(style)': {
+            m: 1,
+            width: '380px',
+            display: 'flex',
+            flexDirection: 'column',
+          },
+        }}
+      >
+        <TextField
+          id="email"
+          name="email"
+          label="E-mail"
+          type="email"
+          variant="outlined"
+          value={email}
+          onChange={handleChange}
+        />
+        <TextField
+          id="password"
+          name="password"
+          label="Password"
+          type="password"
+          variant="outlined"
+          value={password}
+          onChange={handleChange}
+          sx={{ '& > :not(style)': { marginTop: '16px' } }}
+        />
+        <Box
+          sx={{
+            '& > :not(style)': {
+              marginTop: '16px',
+              width: '100px',
+            },
+          }}
+        >
+          <Button type="submit" variant="contained">
+            Login
+          </Button>
+        </Box>
+      </Box>
+    </Container>
   );
 }

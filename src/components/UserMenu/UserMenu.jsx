@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { List, ListItem, LogOutBtn, Welcome, Avatar } from './UserMenu.styled';
+import { List, ListItem, Welcome, Avatar } from './UserMenu.styled';
+import { Button } from '@mui/material';
 import { useAuth } from 'hooks';
 import defaultAvatar from './default-avatar.png';
 import { authOperations } from 'redux/auth';
@@ -15,12 +16,14 @@ export default function UserMenu() {
         <Welcome>Welcome {user.name}</Welcome>
       </ListItem>
       <ListItem>
-        <LogOutBtn
+        <Button
           type="button"
           onClick={() => dispatch(authOperations.logout())}
+          size="small"
+          variant="contained"
         >
           Logout
-        </LogOutBtn>
+        </Button>
       </ListItem>
     </List>
   );

@@ -1,8 +1,10 @@
+import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/operations';
-import { MdClose } from 'react-icons/md';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 import PropTypes from 'prop-types';
-import { ListItemText, Button, Text } from './ListItem.styled';
+import { ListItemText, Text } from './ListItem.styled';
 
 export default function ListItem({ contact }) {
   const dispatch = useDispatch();
@@ -16,9 +18,15 @@ export default function ListItem({ contact }) {
       <Text>
         {name}: {number}
       </Text>
-      <Button type="button" onClick={handleDelete}>
-        <MdClose size={24} />
-      </Button>
+
+      <IconButton
+        aria-label="delete"
+        color="error"
+        type="button"
+        onClick={handleDelete}
+      >
+        <DeleteIcon />
+      </IconButton>
     </ListItemText>
   );
 }
