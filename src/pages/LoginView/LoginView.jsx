@@ -23,7 +23,6 @@ export default function LoginView() {
   };
 
   const handleSubmit = e => {
-    console.log(e);
     e.preventDefault();
     dispatch(authOperations.login({ email, password }));
     setEmail('');

@@ -4,7 +4,7 @@ import { RotatingLines } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
 import { fetchContacts } from 'redux/operations';
 import { useContacts } from 'hooks';
-import { List } from './ContactList.styled';
+import { List, Box } from './ContactList.styled';
 import ListItem from 'components/ListItem';
 
 export default function ContactList() {
@@ -16,7 +16,7 @@ export default function ContactList() {
   }, [dispatch]);
 
   return (
-    <div>
+    <Box>
       {error && toast.error('Ooops, something went wrong. Please, try again')}
       {visibleContacts.length > 0 && (
         <List>
@@ -26,6 +26,6 @@ export default function ContactList() {
         </List>
       )}
       {isLoading && <RotatingLines strokeColor="#4fa94d"></RotatingLines>}
-    </div>
+    </Box>
   );
 }

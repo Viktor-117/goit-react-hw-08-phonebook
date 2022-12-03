@@ -16,8 +16,3 @@ export const ListItem = styled.li`
 export const Welcome = styled.p`
   font-weight: 700;
 `;
-
-export const Avatar = styled.img`
-  display: block;
-  margin-right: 8px;
-`;
