@@ -13,6 +13,7 @@ const HomeView = lazy(() => import('pages/HomeView'));
 const RegisterView = lazy(() => import('pages/RegisterView'));
 const LoginView = lazy(() => import('pages/LoginView'));
 const ContactsView = lazy(() => import('pages/ContactsView'));
+const NotFound = lazy(() => import('components/NotFound'));
 
 const Box = styled.div`
   display: flex;
@@ -62,6 +63,7 @@ export function App() {
             <PrivateRoute redirectTo="/login" component={<ContactsView />} />
           }
         ></Route>
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

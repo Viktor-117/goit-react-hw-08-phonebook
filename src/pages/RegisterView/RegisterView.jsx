@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import { toast } from 'react-toastify';
-import { useAuth } from 'hooks';
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
@@ -13,7 +12,6 @@ export default function RegisterView() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { error } = useAuth();
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -30,6 +28,12 @@ export default function RegisterView() {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if (name === '' || email === '' || password === '') {
+      toast.error('Please, input registration data!');
+      return;
+    }
+
     dispatch(authOperations.register({ name, email, password }));
     setName('');
     setEmail('');
@@ -45,7 +49,7 @@ export default function RegisterView() {
         component="form"
         sx={{
           '& > :not(style)': {
-            m: 1,
+            // m: 1,
             width: '380px',
             display: 'flex',
             flexDirection: 'column',
@@ -85,7 +89,7 @@ export default function RegisterView() {
         <Box
           sx={{
             '& > :not(style)': {
-              marginTop: '16px',
+              marginTop: '24px',
               width: '100px',
             },
           }}
@@ -95,7 +99,6 @@ export default function RegisterView() {
           </Button>
         </Box>
       </Box>
-      {error && toast.error(error)}
     </Container>
   );
 }

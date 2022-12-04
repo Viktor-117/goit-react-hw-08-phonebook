@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import { Button } from '@mui/material';
+import { toast } from 'react-toastify';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { Container, Title } from './LoginView.styled';
@@ -24,6 +25,10 @@ export default function LoginView() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (email === '' || password === '') {
+      toast.error('Please, input registration data!');
+      return;
+    }
     dispatch(authOperations.login({ email, password }));
     setEmail('');
     setPassword('');
